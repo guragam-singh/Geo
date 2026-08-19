@@ -1,14 +1,23 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for changing scenes
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenuPanel;
-
     public void PlayGame()
     {
-       
-        SceneManager.LoadScene(1); 
-        
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.TransitionToGameplay(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Game Exited");
+        Application.Quit();
     }
 }
