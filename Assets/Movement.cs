@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
     public float jumpForce = 26.8561f;
+    public Transform Sprite;
 
     Rigidbody2D rb;
 
@@ -31,17 +32,29 @@ public class Movement : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.right * speedvalues[(int)NormalSpeed] * Time.deltaTime;
-
-        // Jump on mouse press, only if grounded
-        if (Mouse.current.leftButton.wasPressedThisFrame && IsGrounded())
+        if (rb.linearVelocity.y<-24.2f){
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -24.2f);
+        }
+        if (IsGrounded())
         {
+            Vector3 rotation = Sprite.rotation.eulerAngles;
+            rotation.z = Mathf.Round(rotation.z / 90f) * 90;
+            Sprite.rotation = Quaternion.Euler(rotation);
+            
+            if(Input.GetMouseButton(0))
+            {
             rb.linearVelocity = Vector2.zero;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+        }
+        else
+        {
+           Sprite.Rotate(Vector3.back, 452.4152186f * Time.deltaTime);
         }
     }
 
     bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundChecktransform.position, groundCheckRadius, groundLayer) != null;
+        return Physics2D.OverlapBox(groundChecktransform.position, Vector2.right * 1.1f + Vector2.up * groundCheckRadius, 0f, groundLayer) != null;
     }
 }
