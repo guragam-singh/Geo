@@ -540,8 +540,8 @@ Transform:
   m_GameObject: {fileID: 1566337294}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 15000, y: 1, z: 1}
+  m_LocalPosition: {x: -0.05, y: -1.9, z: 0}
+  m_LocalScale: {x: 15000000, y: 2.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -558,7 +558,6 @@ GameObject:
   - component: {fileID: 1823688466}
   - component: {fileID: 1823688465}
   - component: {fileID: 1823688468}
-  - component: {fileID: 1823688469}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -607,7 +606,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 112.5
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -727,6 +726,7 @@ MonoBehaviour:
     sssCustomDownsampleSteps: 0
     msaaMode: 9
     materialQuality: 0
+  renderingPathCustomFrameSettingsOverrideMask:
     mask:
       data1: 0
       data2: 0
@@ -778,20 +778,6 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &1823688469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823688464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10fc104adb6a4f74ebad2b2fa42e6345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1912334865}
-  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &1912334860
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +889,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  jumpForce: 26.8561
 --- !u!212 &1912334864
 SpriteRenderer:
   serializedVersion: 2

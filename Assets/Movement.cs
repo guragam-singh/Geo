@@ -22,7 +22,6 @@ public class Movement : MonoBehaviour
     public float jumpForce = 26.8561f;
 
     Rigidbody2D rb;
-    bool wasGrounded;
 
     void Start()
     {
@@ -33,16 +32,12 @@ public class Movement : MonoBehaviour
     {
         transform.position += Vector3.right * speedvalues[(int)NormalSpeed] * Time.deltaTime;
 
-        bool grounded = IsGrounded();
-
-        // Only jump on the frame we LAND, not every frame we're grounded
-        if (grounded && !wasGrounded)
+        // Jump on mouse press, only if grounded
+        if (Mouse.current.leftButton.wasPressedThisFrame && IsGrounded())
         {
             rb.linearVelocity = Vector2.zero;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-
-        wasGrounded = grounded;
     }
 
     bool IsGrounded()
