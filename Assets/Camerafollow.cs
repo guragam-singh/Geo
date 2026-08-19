@@ -7,13 +7,6 @@ public class Camerafollow : MonoBehaviour
     public float lookAhead = 4f;
     public Transform player;
 
-    float fixedY;
-
-    void Awake()
-    {
-        fixedY = transform.position.y;
-    }
-
     void LateUpdate()
     {
         FollowPlayer();
@@ -28,7 +21,7 @@ public class Camerafollow : MonoBehaviour
 
         Vector3 targetPosition = new Vector3(
             player.position.x + cameraOffset.x + lookAhead,
-            fixedY + cameraOffset.y,
+            player.position.y + cameraOffset.y,
             transform.position.z);
 
         float smoothing = 1f - Mathf.Exp(-Time.deltaTime / Mathf.Max(interpolationTime, 0.01f));
